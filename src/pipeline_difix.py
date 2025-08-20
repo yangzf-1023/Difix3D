@@ -1013,9 +1013,9 @@ class DifixPipeline(
             if self.do_classifier_free_guidance:
                 image_embeds = torch.cat([negative_image_embeds, image_embeds])
 
-        image = self.image_processor.preprocess(image)
-        if ref_image is not None:
-            ref_image = self.image_processor.preprocess(ref_image)
+        # image = self.image_processor.preprocess(image)
+        # if ref_image is not None:
+        #     ref_image = self.image_processor.preprocess(ref_image)
 
         # 4. Prepare timesteps
         timesteps, num_inference_steps = retrieve_timesteps(self.scheduler, num_inference_steps, device, timesteps)
@@ -1127,5 +1127,4 @@ class DifixPipeline(
 
         if not return_dict:
             return (image, has_nsfw_concept)
-
         return StableDiffusionPipelineOutput(images=image, nsfw_content_detected=has_nsfw_concept)
